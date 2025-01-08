@@ -13,11 +13,18 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <lombok.version>1.18.36</lombok.version>
+        <fastjson.version>1.2.83</fastjson.version>
+        <hutool.version>5.8.22</hutool.version>
+        <common-collections.version>3.2.2</common-collections.version>
+        <mybatis.version>3.0.4</mybatis.version>
     </properties>
 
     <modules>
         <module>bitten-handler</module>
         <module>bitten-common</module>
+        <module>bitten-server</module>
     </modules>
 
     <parent>
