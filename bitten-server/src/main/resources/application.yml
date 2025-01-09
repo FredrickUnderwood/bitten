@@ -11,11 +11,12 @@ spring:
       auto-commit-interval: 1000
       enable-auto-commit: true
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/bitten
     username: root
     password: root
-
+server:
+  port: 8090
 bitten:
   business:
     topic:

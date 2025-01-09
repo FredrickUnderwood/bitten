@@ -2,6 +2,7 @@ package com.chen.bitten.common.domain;
 
 
 import com.chen.bitten.common.dto.model.ContentModel;
+import com.chen.bitten.common.process.ProcessModel;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,7 +12,7 @@ import java.util.Set;
  * 发送任务的信息
  */
 @Data
-public class TaskInfo implements Serializable {
+public class TaskInfo implements ProcessModel, Serializable {
 
 
     /**

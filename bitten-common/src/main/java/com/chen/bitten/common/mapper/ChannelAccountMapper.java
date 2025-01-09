@@ -1,4 +1,4 @@
-package com.chen.bitten.server.mapper;
+package com.chen.bitten.common.mapper;
 
 import com.chen.bitten.common.domain.persistence.ChannelAccount;
 import org.apache.ibatis.annotations.Mapper;

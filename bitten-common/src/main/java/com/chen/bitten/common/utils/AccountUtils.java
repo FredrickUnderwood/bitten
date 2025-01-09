@@ -2,7 +2,7 @@ package com.chen.bitten.common.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.chen.bitten.common.domain.persistence.ChannelAccount;
-import com.chen.bitten.server.mapper.ChannelAccountMapper;
+import com.chen.bitten.common.mapper.ChannelAccountMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
