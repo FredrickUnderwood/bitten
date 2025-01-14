@@ -45,6 +45,11 @@
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.monitor4all</groupId>
+            <artifactId>log-record-springboot3-starter</artifactId>
+            <version>${log-record-springboot3-starter.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
