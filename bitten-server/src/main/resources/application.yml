@@ -1,6 +1,6 @@
 spring:
   kafka:
-    bootstrap-servers: 172.31.142.81:9092
+    bootstrap-servers: 47.109.43.173:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -21,6 +21,9 @@ bitten:
   business:
     topic:
       name: bittenBusiness
+    tagId:
+      key: kafka_tag_id
+      value: com.chen.bitten
 
 mybatis:
   mapper-locations: classpath*:mapper/*.xml

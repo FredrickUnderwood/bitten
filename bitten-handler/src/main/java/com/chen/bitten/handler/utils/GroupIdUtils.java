@@ -14,6 +14,8 @@ import java.util.List;
  */
 public class GroupIdUtils {
 
+    private GroupIdUtils() {
+    }
     public static List<String> getAllGroupIds() {
         List<String> groupIds = new ArrayList<>();
         for (ChannelTypeEnum channelType: ChannelTypeEnum.values()) {
