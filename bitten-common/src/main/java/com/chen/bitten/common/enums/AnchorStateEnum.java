@@ -29,7 +29,7 @@ public enum AnchorStateEnum implements BittenEnum{
     /**
      * 消息被频次去重（同一个渠道短时间内发送多次消息给用户）
      */
-    RULE_DEDUPLICATION(40, "消息被频次去重"),
+    FREQUENCY_DEDUPLICATION(40, "消息被频次去重"),
     /**
      * 白名单过滤（非正式环境，不在白名单内）
      */

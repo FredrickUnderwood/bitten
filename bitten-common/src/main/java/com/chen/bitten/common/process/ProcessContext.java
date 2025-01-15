@@ -23,6 +23,9 @@ public class ProcessContext <T extends ProcessModel> implements Serializable {
      */
     private T processModel;
 
+    /**
+     * 需要丢弃的消息needBreak置为true
+     */
     private Boolean needBreak;
 
     private BasicResultVO response;

@@ -15,6 +15,11 @@ spring:
     url: jdbc:mysql://localhost:3306/bitten
     username: root
     password: root
+  data:
+    redis:
+      database: 10
+      host: 47.109.43.173
+      port: 6379
 server:
   port: 8090
 bitten:
@@ -24,6 +29,11 @@ bitten:
     tagId:
       key: kafka_tag_id
       value: com.chen.bitten
+  apollo:
+    enabled: false
+  nacos:
+    enabled: false
+
 
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
