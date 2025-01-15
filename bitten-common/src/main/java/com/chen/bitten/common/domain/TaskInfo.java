@@ -33,7 +33,7 @@ public class TaskInfo implements ProcessModel, Serializable {
     /**
      * 业务Id：模板类型+模板ID+当天日期（用于数据追踪）
      */
-    private String businessId;
+    private Long businessId;
 
     /**
      * 接收者

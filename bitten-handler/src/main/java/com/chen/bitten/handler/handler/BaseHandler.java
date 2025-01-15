@@ -1,14 +1,19 @@
 package com.chen.bitten.handler.handler;
 
+import com.chen.bitten.common.domain.AnchorInfo;
 import com.chen.bitten.common.domain.TaskInfo;
+import com.chen.bitten.common.enums.AnchorStateEnum;
+import com.chen.bitten.common.utils.LogUtils;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 
-abstract public class BaseHandler implements Handler{
+abstract public class BaseHandler implements Handler {
 
     protected Integer channelType;
     @Autowired
     private HandlerHolder handlerHolder;
+    @Autowired
+    private LogUtils logUtils;
 
     @PostConstruct
     public void init() {
@@ -18,13 +23,20 @@ abstract public class BaseHandler implements Handler{
     @Override
     public void doHandler(TaskInfo taskInfo) {
         if (handler(taskInfo)) {
-            // TODO 推送信息成功，日志记录
+            logUtils.print(AnchorInfo.builder()
+                    .bizId(taskInfo.getBizId()).messageId(taskInfo.getMessageId())
+                    .receiver(taskInfo.getReceiver()).state(AnchorStateEnum.SEND_SUCCESS.getCode())
+                    .businessId(taskInfo.getBusinessId()).build());
         }
-        // TODO 推送消息失败，日志记录
+        logUtils.print(AnchorInfo.builder()
+                .bizId(taskInfo.getBizId()).messageId(taskInfo.getMessageId())
+                .receiver(taskInfo.getReceiver()).state(AnchorStateEnum.SEND_FAIL.getCode())
+                .businessId(taskInfo.getBusinessId()).build());
     }
 
     /**
      * 统一处理的handler接口，具体的推送信息实现类要实现这个接口
+     *
      * @param taskInfo
      * @return
      */

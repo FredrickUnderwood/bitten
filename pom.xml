@@ -20,6 +20,7 @@
         <common-collections.version>3.2.2</common-collections.version>
         <mybatis.version>3.0.4</mybatis.version>
         <dynamic-tp-spring-boot-starter-common.version>1.1.9.1-3.x</dynamic-tp-spring-boot-starter-common.version>
+        <log-record-springboot3-starter.version>1.7.0</log-record-springboot3-starter.version>
     </properties>
 
     <modules>
