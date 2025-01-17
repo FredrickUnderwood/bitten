@@ -1,0 +1,2 @@
+discardMsgIds: []
+deduplicationRule: {"deduplication_10":{"num":1,"time":300},"deduplication_20":{"num":5}}

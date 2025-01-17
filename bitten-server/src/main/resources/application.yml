@@ -1,0 +1,46 @@
+spring:
+  kafka:
+    bootstrap-servers: 47.109.43.173:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+      auto-commit-interval: 1000
+      enable-auto-commit: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bitten
+    username: root
+    password: root
+  data:
+    redis:
+      database: 10
+      host: 47.109.43.173
+      port: 6379
+server:
+  port: 8090
+bitten:
+  business:
+    topic:
+      name: bittenBusiness
+    tagId:
+      key: kafka_tag_id
+      value: com.chen.bitten
+  apollo:
+    enabled: false
+  nacos:
+    enabled: false
+
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com/chen/bitten/common/domain/persistence
+
+
+
+
