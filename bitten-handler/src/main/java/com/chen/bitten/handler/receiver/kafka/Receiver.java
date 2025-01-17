@@ -1,6 +1,8 @@
 package com.chen.bitten.handler.receiver.kafka;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.parser.Feature;
 import com.chen.bitten.common.domain.TaskInfo;
 import com.chen.bitten.handler.service.ConsumeService;
 import com.chen.bitten.handler.utils.GroupIdUtils;
@@ -40,7 +42,7 @@ public class Receiver {
         Optional<String> kafkaMessage = Optional.ofNullable(consumerRecord.value());
         if (kafkaMessage.isPresent()) {
             // 判断Kafka消息是否为空
-            List<TaskInfo> taskInfoList = JSON.parseArray(kafkaMessage.get(), TaskInfo.class);
+            List<TaskInfo> taskInfoList = JSON.parseObject(kafkaMessage.get(), new TypeReference<List<TaskInfo>>(){}, Feature.SupportAutoType);
             String messageGroupId = GroupIdUtils.getGroupIdByTaskInfo(Objects.requireNonNull(taskInfoList.stream().findFirst().orElse(null)));
             // 只有跟自身相关的消息才消费
             if (messageGroupId.equals(topicGroupId)) {

@@ -1,5 +1,6 @@
 package com.chen.bitten.common.dto.model;
 
+import com.alibaba.fastjson.annotation.JSONType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JSONType(typeName = "EmailContentModel")
 public class EmailContentModel extends ContentModel {
     /**
      * 邮件标题
