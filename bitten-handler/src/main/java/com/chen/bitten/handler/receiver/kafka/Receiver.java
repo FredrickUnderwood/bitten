@@ -42,7 +42,7 @@ public class Receiver {
         Optional<String> kafkaMessage = Optional.ofNullable(consumerRecord.value());
         if (kafkaMessage.isPresent()) {
             // 判断Kafka消息是否为空
-            List<TaskInfo> taskInfoList = JSON.parseObject(kafkaMessage.get(), new TypeReference<List<TaskInfo>>(){}, Feature.SupportAutoType);
+            List<TaskInfo> taskInfoList = JSON.parseArray(kafkaMessage.get(), TaskInfo.class);
             String messageGroupId = GroupIdUtils.getGroupIdByTaskInfo(Objects.requireNonNull(taskInfoList.stream().findFirst().orElse(null)));
             // 只有跟自身相关的消息才消费
             if (messageGroupId.equals(topicGroupId)) {

@@ -4,6 +4,7 @@ import cn.hutool.core.text.StrPool;
 import com.chen.bitten.common.domain.AnchorInfo;
 import com.chen.bitten.common.domain.TaskInfo;
 import com.chen.bitten.common.enums.AnchorStateEnum;
+import com.chen.bitten.common.enums.DeduplicateTypeEnum;
 import com.chen.bitten.common.utils.LogUtils;
 import com.chen.bitten.common.utils.RedisUtils;
 import com.chen.bitten.handler.deduplicate.DeduplicateParam;
@@ -25,6 +26,10 @@ public class FrequencyDeduplicateService extends AbstractDeduplicateService{
 
     @Autowired
     private LogUtils logUtils;
+
+    public FrequencyDeduplicateService() {
+        this.DEDUPLICATE_TYPE = DeduplicateTypeEnum.FREQUENCY.getCode();
+    }
 
     @Override
     public void deduplicate(DeduplicateParam deduplicateParam) {
