@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SessionCallback;
+import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
@@ -74,5 +75,20 @@ public class RedisUtils {
         } catch (Exception e) {
             log.error("{}lPush fail! e: {}", LOG_PREFIX, e.getStackTrace());
         }
+    }
+
+    public Boolean executeContentDeduplicateScript(RedisScript<Long> redisScript, List<String> keys, String... args) {
+        String[] argsArray = args != null ? args : new String[0];
+        try {
+            Long execute = (Long) redisTemplate.execute(redisScript, keys, (Object[]) argsArray);
+            if (Objects.isNull(execute)) {
+                return false;
+            }
+            return execute.intValue() == 1;
+        } catch (Exception e) {
+
+            log.error("{}executeContentDeduplicateScript fail! e: {}", LOG_PREFIX, e.getStackTrace());
+        }
+        return false;
     }
 }

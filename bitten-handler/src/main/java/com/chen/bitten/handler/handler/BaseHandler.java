@@ -4,12 +4,19 @@ import com.chen.bitten.common.domain.AnchorInfo;
 import com.chen.bitten.common.domain.TaskInfo;
 import com.chen.bitten.common.enums.AnchorStateEnum;
 import com.chen.bitten.common.utils.LogUtils;
+import com.chen.bitten.handler.flowcontrol.FlowControlFactory;
+import com.chen.bitten.handler.flowcontrol.FlowControlParam;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Objects;
 
 abstract public class BaseHandler implements Handler {
 
     protected Integer channelType;
+    protected FlowControlParam flowControlParam;
+    @Autowired
+    private FlowControlFactory flowControlFactory;
     @Autowired
     private HandlerHolder handlerHolder;
     @Autowired
@@ -22,6 +29,9 @@ abstract public class BaseHandler implements Handler {
 
     @Override
     public void doHandler(TaskInfo taskInfo) {
+        if (Objects.nonNull(flowControlParam)) {
+            flowControlFactory.flowControl(taskInfo, flowControlParam);
+        }
         if (handler(taskInfo)) {
             logUtils.print(AnchorInfo.builder()
                     .bizId(taskInfo.getBizId()).messageId(taskInfo.getMessageId())

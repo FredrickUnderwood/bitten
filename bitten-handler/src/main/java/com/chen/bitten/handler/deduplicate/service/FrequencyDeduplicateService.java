@@ -15,9 +15,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class FrequencyDeduplicateService extends AbstractDeduplicateService{
-
-    private static final String FREQUENCY_DEDUPLICATE_PREFIX = "FRE_";
+public class FrequencyDeduplicateService extends AbstractDeduplicateService {
 
     private static final String FREQUENCY_DEDUPLICATE_REDIS_PREFIX = "FD_";
 
@@ -87,8 +85,7 @@ public class FrequencyDeduplicateService extends AbstractDeduplicateService{
      * @return
      */
     private String generateSingleFrequencyDeduplicateKey(TaskInfo taskInfo, String receiver) {
-        return FREQUENCY_DEDUPLICATE_PREFIX + StrPool.C_UNDERLINE
-                + receiver + StrPool.C_UNDERLINE
+        return receiver + StrPool.C_UNDERLINE
                 + taskInfo.getSendChannel();
     }
 }

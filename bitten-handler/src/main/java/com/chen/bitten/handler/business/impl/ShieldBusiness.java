@@ -1,4 +1,4 @@
-package com.chen.bitten.handler.service.business.impl;
+package com.chen.bitten.handler.business.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.Feature;
@@ -50,6 +50,7 @@ public class ShieldBusiness implements BusinessProcess<TaskInfo> {
                         .bizId(taskInfo.getBizId()).messageId(taskInfo.getMessageId())
                         .receiver(taskInfo.getReceiver()).state(AnchorStateEnum.NIGHT_SHIELD_NEXT_SEND.getCode()).build());
             }
+            context.setNeedBreak(true);
         }
     }
 }

@@ -1,3 +1,3 @@
 discardMsgIds: []
-deduplicationRule: {"deduplicate_20":{"num":5}}
-#"deduplicate_10":{"num":1,"time":300},
+deduplicationRule: {"deduplicate_10":{"num":1,"time":300},"deduplicate_20":{"num":3}}
+flowControlRule: {"flow_control_10":1}
