@@ -33,6 +33,8 @@ bitten:
     enabled: false
   nacos:
     enabled: false
+  mq:
+    type: kafka
 
 
 mybatis:

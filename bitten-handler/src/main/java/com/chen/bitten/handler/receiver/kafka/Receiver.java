@@ -3,6 +3,7 @@ package com.chen.bitten.handler.receiver.kafka;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.parser.Feature;
+import com.chen.bitten.common.constant.MessageQueueTypeConstant;
 import com.chen.bitten.common.domain.TaskInfo;
 import com.chen.bitten.handler.service.ConsumeService;
 import com.chen.bitten.handler.utils.GroupIdUtils;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -27,6 +29,7 @@ import java.util.Optional;
 @Slf4j
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@ConditionalOnProperty(name = "bitten.mq.type", havingValue = MessageQueueTypeConstant.KAFKA)
 public class Receiver {
 
     @Autowired

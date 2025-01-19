@@ -4,4 +4,6 @@ public class CommonConstant {
 
     public static final String EMPTY_JSON_ARRAY = "[]";
     public static final String EMPTY_JSON_OBJECT = "{}";
+
+    public static final String COLON = ":";
 }

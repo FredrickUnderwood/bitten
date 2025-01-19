@@ -15,10 +15,7 @@ import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -75,6 +72,14 @@ public class RedisUtils {
         } catch (Exception e) {
             log.error("{}lPush fail! e: {}", LOG_PREFIX, e.getStackTrace());
         }
+    }
+    public List<String> lRange(String key, int start, int end) {
+        try {
+            return redisTemplate.opsForList().range(key, start, end);
+        } catch (Exception e) {
+            log.error("{}lRange fail! e: {}", LOG_PREFIX, e.getStackTrace());
+        }
+        return new ArrayList<>();
     }
 
     public Boolean executeContentDeduplicateScript(RedisScript<Long> redisScript, List<String> keys, String... args) {

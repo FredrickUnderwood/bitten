@@ -25,4 +25,8 @@ public class LogUtils {
         print(objectInfo);
         print(anchorInfo);
     }
+
+    public void print(String bizId, String bizType, String msg) {
+        log.info("bizId: {}, bizType: {}, msg: {}", bizId, bizType, msg);
+    }
 }

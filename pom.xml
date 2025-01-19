@@ -28,6 +28,7 @@
         <module>bitten-handler</module>
         <module>bitten-common</module>
         <module>bitten-server</module>
+        <module>bitten-api</module>
     </modules>
 
     <parent>

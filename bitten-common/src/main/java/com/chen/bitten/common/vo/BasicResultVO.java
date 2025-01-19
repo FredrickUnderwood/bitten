@@ -49,9 +49,31 @@ public class BasicResultVO<T> implements Serializable {
         this(status.getCode(), msg, data);
     }
 
-
-
     public static BasicResultVO<Void> success() {
         return new BasicResultVO<>(RespStatusEnum.SUCCESS);
+    }
+
+    public static <T> BasicResultVO<T> success(T data) {
+        return new BasicResultVO<>(RespStatusEnum.SUCCESS, data);
+    }
+
+    public static <T> BasicResultVO<T> fail() {
+        return new BasicResultVO<>(
+                RespStatusEnum.FAIL,
+                RespStatusEnum.FAIL.getMsg(),
+                null
+        );
+    }
+
+    public static <T> BasicResultVO<T> fail(String msg) {
+        return fail(RespStatusEnum.FAIL, msg);
+    }
+
+    public static <T> BasicResultVO<T> fail(RespStatusEnum status) {
+        return fail(status, success().getMsg());
+    }
+
+    public static <T> BasicResultVO<T> fail(RespStatusEnum status, String msg) {
+        return new BasicResultVO<>(status, msg, null);
     }
 }
