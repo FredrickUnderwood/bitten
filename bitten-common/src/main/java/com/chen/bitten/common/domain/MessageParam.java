@@ -22,7 +22,7 @@ public class MessageParam {
     private String receivers;
 
     /**
-     * 需要替换的内瓤
+     * 需要替换的内容
      */
     private Map<String, String> variables;
 
