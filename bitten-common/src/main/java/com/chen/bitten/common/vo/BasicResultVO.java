@@ -70,7 +70,7 @@ public class BasicResultVO<T> implements Serializable {
     }
 
     public static <T> BasicResultVO<T> fail(RespStatusEnum status) {
-        return fail(status, success().getMsg());
+        return fail(status, status.getMsg());
     }
 
     public static <T> BasicResultVO<T> fail(RespStatusEnum status, String msg) {

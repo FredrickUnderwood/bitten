@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.parser.Feature;
 import com.chen.bitten.common.constant.MessageQueueTypeConstant;
+import com.chen.bitten.common.domain.RecallTaskInfo;
 import com.chen.bitten.common.domain.TaskInfo;
 import com.chen.bitten.handler.service.ConsumeService;
 import com.chen.bitten.handler.utils.GroupIdUtils;
@@ -56,4 +57,12 @@ public class Receiver {
     }
 
     //TODO 撤回消息consumer
+    @KafkaListener(topics = "#{'${bitten.business.recall.topic.name}'}", groupId = "#{'${bitten.business.recall.groupId}'}", containerFactory = "filterContainerFactory")
+    public void recall(ConsumerRecord<?, String> consumerRecord) {
+        Optional<String> kafkaMessage = Optional.ofNullable(consumerRecord.value());
+        if (kafkaMessage.isPresent()) {
+            RecallTaskInfo recallTaskInfo = JSON.parseObject(kafkaMessage.get(), RecallTaskInfo.class);
+            consumeService.consume2Recall(recallTaskInfo);
+        }
+    }
 }

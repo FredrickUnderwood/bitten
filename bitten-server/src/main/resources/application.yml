@@ -24,6 +24,10 @@ server:
   port: 8090
 bitten:
   business:
+    recall:
+      topic:
+        name: bittenBusinessRecall
+      groupId: bittenBusinessRecallGroup
     topic:
       name: bittenBusiness
     tagId:

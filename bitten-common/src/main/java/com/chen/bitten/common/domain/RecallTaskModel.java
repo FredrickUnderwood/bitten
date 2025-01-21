@@ -18,5 +18,5 @@ public class RecallTaskModel implements ProcessModel {
 
     private List<String> recallMessageIdList;
 
-    private ResponseTaskInfo responseTaskInfo;
+    private RecallTaskInfo recallTaskInfo;
 }

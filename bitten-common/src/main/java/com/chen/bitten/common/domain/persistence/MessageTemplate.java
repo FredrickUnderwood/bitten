@@ -26,7 +26,7 @@ public class MessageTemplate implements Serializable {
     /**
      * 当前消息审核状态： 10.待审核 20.审核成功 30.被拒绝
      */
-    private Integer status;
+    private Integer auditStatus;
 
     /**
      * 工单id（审核模板走工单）

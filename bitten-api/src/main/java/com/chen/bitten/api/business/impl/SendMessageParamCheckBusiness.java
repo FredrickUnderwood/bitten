@@ -8,11 +8,13 @@ import com.chen.bitten.common.enums.RespStatusEnum;
 import com.chen.bitten.common.process.BusinessProcess;
 import com.chen.bitten.common.process.ProcessContext;
 import com.chen.bitten.common.vo.BasicResultVO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Service
 public class SendMessageParamCheckBusiness implements BusinessProcess<SendTaskModel> {
 
     /**

@@ -2,6 +2,7 @@ package com.chen.bitten.handler.handler.impl;
 
 import cn.hutool.extra.mail.MailAccount;
 import cn.hutool.extra.mail.MailUtil;
+import com.chen.bitten.common.domain.RecallTaskInfo;
 import com.chen.bitten.common.domain.TaskInfo;
 import com.chen.bitten.common.dto.model.EmailContentModel;
 import com.chen.bitten.common.enums.ChannelTypeEnum;
@@ -66,4 +67,12 @@ public class EmailHandler extends BaseHandler {
         return mailAccount;
     }
 
+    /**
+     * 无法撤回消息
+     * @param recallTaskInfo
+     */
+    @Override
+    public void recall(RecallTaskInfo recallTaskInfo) {
+
+    }
 }

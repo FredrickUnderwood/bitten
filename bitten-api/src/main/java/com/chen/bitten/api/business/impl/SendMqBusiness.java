@@ -29,13 +29,13 @@ public class SendMqBusiness implements BusinessProcess<SendTaskModel> {
     @Autowired
     private MqService mqService;
 
-    @Value("bitten.business.topic.name")
+    @Value("${bitten.business.topic.name}")
     private String topic;
 
-    @Value("bitten.business.tagId.value")
+    @Value("${bitten.business.tagId.value}")
     private String tagIdValue;
 
-    @Value("bitten.mq.type")
+    @Value("${bitten.mq.type}")
     private String mqType;
 
 

@@ -1,6 +1,6 @@
 package com.chen.bitten.api.config;
 
-import com.chen.bitten.api.business.impl.SendMqBusiness;
+import com.chen.bitten.api.business.impl.*;
 import com.chen.bitten.common.process.ProcessController;
 import com.chen.bitten.common.process.ProcessTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +20,34 @@ public class ApiProcessConfig {
     private static final String RECALL_TEMPLATE_CODE = "recall";
 
     @Autowired
+    private SendMessageParamCheckBusiness sendMessageParamCheckBusiness;
+
+    @Autowired
+    private SendAssembleBusiness sendAssembleBusiness;
+
+    @Autowired
+    private SendTaskInfoCheckBusiness sendTaskInfoCheckBusiness;
+
+    @Autowired
     private SendMqBusiness sendMqBusiness;
+
+    @Autowired
+    private RecallAssembleBusiness recallAssembleBusiness;
+
+    @Autowired
+    private RecallMqService recallMqService;
 
     @Bean("apiSendProcessTemplate")
     public ProcessTemplate sendProcessTemplate() {
         ProcessTemplate processTemplate = new ProcessTemplate();
-        processTemplate.setProcessList(Arrays.asList(sendMqBusiness));
+        processTemplate.setProcessList(Arrays.asList(sendMessageParamCheckBusiness, sendAssembleBusiness, sendTaskInfoCheckBusiness, sendMqBusiness));
         return processTemplate;
     }
 
     @Bean("apiRecallProcessTemplate")
     public ProcessTemplate recallProcessTemplate() {
         ProcessTemplate processTemplate = new ProcessTemplate();
+        processTemplate.setProcessList(Arrays.asList(recallAssembleBusiness, recallMqService));
         return processTemplate;
     }
 
