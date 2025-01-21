@@ -19,7 +19,7 @@ import java.util.Objects;
 @Service
 public class RecallAssembleBusiness implements BusinessProcess<RecallTaskModel> {
 
-    public static final String LOG_PREFIX = "[RecallAssembleBusiness]";
+    private static final String LOG_PREFIX = "[RecallAssembleBusiness]";
 
     @Autowired
     private MessageTemplateMapper messageTemplateMapper;

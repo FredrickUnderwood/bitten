@@ -28,6 +28,9 @@ bitten:
       topic:
         name: bittenBusinessRecall
       groupId: bittenBusinessRecallGroup
+    log:
+      topic:
+        name: bittenBusinessLog
     topic:
       name: bittenBusiness
     tagId:

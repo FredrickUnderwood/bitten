@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class RecallMqService implements BusinessProcess<RecallTaskModel> {
 
-    public static final String LOG_PREFIX = "[RecallMqService]";
+    private static final String LOG_PREFIX = "[RecallMqService]";
 
     @Autowired
     private MqService mqService;
