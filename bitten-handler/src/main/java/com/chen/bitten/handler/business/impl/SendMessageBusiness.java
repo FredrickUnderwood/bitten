@@ -1,4 +1,4 @@
-package com.chen.bitten.handler.service.business.impl;
+package com.chen.bitten.handler.business.impl;
 
 import com.chen.bitten.common.domain.TaskInfo;
 import com.chen.bitten.common.process.BusinessProcess;

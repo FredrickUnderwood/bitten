@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -21,7 +22,7 @@ public class AccountUtils {
     public <T> T getAccountById(Integer accountId, Class<T> clazz) {
         try {
             ChannelAccount channelAccount = channelAccountMapper.findById(accountId);
-            if (channelAccount != null) {
+            if (Objects.nonNull(channelAccount)) {
                 return JSON.parseObject(channelAccount.getAccountConfig(), clazz);
             }
         } catch (Exception e) {

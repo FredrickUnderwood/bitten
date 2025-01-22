@@ -4,6 +4,7 @@ import cn.hutool.core.text.StrPool;
 import com.chen.bitten.common.domain.AnchorInfo;
 import com.chen.bitten.common.domain.TaskInfo;
 import com.chen.bitten.common.enums.AnchorStateEnum;
+import com.chen.bitten.common.enums.DeduplicateTypeEnum;
 import com.chen.bitten.common.utils.LogUtils;
 import com.chen.bitten.common.utils.RedisUtils;
 import com.chen.bitten.handler.deduplicate.DeduplicateParam;
@@ -14,9 +15,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class FrequencyDeduplicateService extends AbstractDeduplicateService{
-
-    private static final String FREQUENCY_DEDUPLICATE_PREFIX = "FRE_";
+public class FrequencyDeduplicateService extends AbstractDeduplicateService {
 
     private static final String FREQUENCY_DEDUPLICATE_REDIS_PREFIX = "FD_";
 
@@ -25,6 +24,10 @@ public class FrequencyDeduplicateService extends AbstractDeduplicateService{
 
     @Autowired
     private LogUtils logUtils;
+
+    public FrequencyDeduplicateService() {
+        this.DEDUPLICATE_TYPE = DeduplicateTypeEnum.FREQUENCY.getCode();
+    }
 
     @Override
     public void deduplicate(DeduplicateParam deduplicateParam) {
@@ -82,8 +85,7 @@ public class FrequencyDeduplicateService extends AbstractDeduplicateService{
      * @return
      */
     private String generateSingleFrequencyDeduplicateKey(TaskInfo taskInfo, String receiver) {
-        return FREQUENCY_DEDUPLICATE_PREFIX + StrPool.C_UNDERLINE
-                + receiver + StrPool.C_UNDERLINE
+        return receiver + StrPool.C_UNDERLINE
                 + taskInfo.getSendChannel();
     }
 }

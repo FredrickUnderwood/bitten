@@ -3,7 +3,10 @@ package com.chen.bitten.common.domain;
 
 import com.chen.bitten.common.dto.model.ContentModel;
 import com.chen.bitten.common.process.ProcessModel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -12,6 +15,9 @@ import java.util.Set;
  * 发送任务的信息
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class TaskInfo implements ProcessModel, Serializable {
 
 
@@ -54,6 +60,11 @@ public class TaskInfo implements ProcessModel, Serializable {
      * 消息类型
      */
     private Integer messageType;
+
+    /**
+     * 模板类型
+     */
+    private Integer templateType;
 
     /**
      * 屏蔽类型

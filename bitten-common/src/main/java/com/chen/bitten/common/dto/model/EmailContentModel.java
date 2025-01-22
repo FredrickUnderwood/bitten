@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JSONType(typeName = "EmailContentModel")
 public class EmailContentModel extends ContentModel {
     /**
      * 邮件标题

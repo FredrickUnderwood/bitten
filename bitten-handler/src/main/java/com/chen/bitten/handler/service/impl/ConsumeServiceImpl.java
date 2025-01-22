@@ -2,14 +2,17 @@ package com.chen.bitten.handler.service.impl;
 
 import com.chen.bitten.common.domain.AnchorInfo;
 import com.chen.bitten.common.domain.ObjectInfo;
+import com.chen.bitten.common.domain.RecallTaskInfo;
 import com.chen.bitten.common.domain.TaskInfo;
 import com.chen.bitten.common.enums.AnchorStateEnum;
 import com.chen.bitten.common.utils.LogUtils;
+import com.chen.bitten.handler.handler.HandlerHolder;
 import com.chen.bitten.handler.handler.pending.Task;
 import com.chen.bitten.handler.handler.pending.TaskPendingHolder;
 import com.chen.bitten.handler.service.ConsumeService;
 import com.chen.bitten.handler.utils.GroupIdUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.StickyAssignor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,7 @@ import java.util.Objects;
 public class ConsumeServiceImpl implements ConsumeService {
 
     private static final String BIZ_TYPE = "Receiver#consumer";
+    private static final String RECALL_BIZ_TYPE = "Receiver#recall";
 
     @Autowired
     private ApplicationContext context;
@@ -31,6 +35,8 @@ public class ConsumeServiceImpl implements ConsumeService {
 
     @Autowired
     private LogUtils logUtils;
+    @Autowired
+    private HandlerHolder handlerHolder;
 
     @Override
     public void consume2Send(List<TaskInfo> taskInfoList) {
@@ -46,4 +52,13 @@ public class ConsumeServiceImpl implements ConsumeService {
     }
 
     // TODO 撤回逻辑
+    @Override
+    public void consume2Recall(RecallTaskInfo recallTaskInfo) {
+        logUtils.print(ObjectInfo.builder()
+                .bizType(RECALL_BIZ_TYPE)
+                .object(recallTaskInfo).build());
+        handlerHolder.route(recallTaskInfo.getSendChannel()).recall(recallTaskInfo);
+    }
+
+
 }

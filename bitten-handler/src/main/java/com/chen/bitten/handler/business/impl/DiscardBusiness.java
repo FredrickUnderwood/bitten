@@ -1,4 +1,4 @@
-package com.chen.bitten.handler.service.business.impl;
+package com.chen.bitten.handler.business.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;

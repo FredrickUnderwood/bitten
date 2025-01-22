@@ -5,10 +5,12 @@ import com.chen.bitten.common.domain.TaskInfo;
 import com.chen.bitten.common.enums.AnchorStateEnum;
 import com.chen.bitten.common.enums.DeduplicateTypeEnum;
 import com.chen.bitten.handler.deduplicate.DeduplicateParam;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Objects;
 
+@Component
 public class FrequencyDeduplicateBuilder extends AbstractDeduplicateBuilder{
 
     public FrequencyDeduplicateBuilder() {

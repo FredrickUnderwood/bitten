@@ -1,5 +1,6 @@
 package com.chen.bitten.handler.handler;
 
+import com.chen.bitten.common.domain.RecallTaskInfo;
 import com.chen.bitten.common.domain.TaskInfo;
 
 /**
@@ -9,6 +10,6 @@ public interface Handler {
 
     void doHandler(TaskInfo taskInfo);
 
-    // TODO 撤回接口
+    void recall(RecallTaskInfo recallTaskInfo);
 
 }

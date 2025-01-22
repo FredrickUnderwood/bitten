@@ -5,7 +5,6 @@ import com.alibaba.fastjson.annotation.JSONType;
 import java.io.Serializable;
 
 
-@JSONType(seeAlso = {EmailContentModel.class})
 public class ContentModel implements Serializable {
 
 }

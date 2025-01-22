@@ -24,6 +24,13 @@ server:
   port: 8090
 bitten:
   business:
+    recall:
+      topic:
+        name: bittenBusinessRecall
+      groupId: bittenBusinessRecallGroup
+    log:
+      topic:
+        name: bittenBusinessLog
     topic:
       name: bittenBusiness
     tagId:
@@ -33,6 +40,8 @@ bitten:
     enabled: false
   nacos:
     enabled: false
+  mq:
+    type: kafka
 
 
 mybatis:

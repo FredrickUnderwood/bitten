@@ -1,12 +1,14 @@
 package com.chen.bitten.handler.receiver.kafka;
 
 import cn.hutool.core.text.StrPool;
+import com.chen.bitten.common.constant.MessageQueueTypeConstant;
 import com.chen.bitten.handler.utils.GroupIdUtils;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.header.Header;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
@@ -24,6 +26,7 @@ import java.util.*;
  */
 @Service
 @Slf4j
+@ConditionalOnProperty(name = "bitten.mq.type", havingValue = MessageQueueTypeConstant.KAFKA)
 public class ReceiverStart {
     /**
      * 用来匹配需要启动的receiver的方法名
