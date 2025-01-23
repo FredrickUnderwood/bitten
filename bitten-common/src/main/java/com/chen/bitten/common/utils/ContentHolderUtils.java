@@ -1,6 +1,5 @@
 package com.chen.bitten.common.utils;
 
-import org.springframework.util.PropertiesPersister;
 import org.springframework.util.PropertyPlaceholderHelper;
 
 import java.text.MessageFormat;
@@ -10,7 +9,7 @@ import java.util.Objects;
 /**
  * 用于处理占位符
  */
-public class ContentHolderUtil {
+public class ContentHolderUtils {
 
     private static final String PLACEHOLDER_PREFIX = "${";
 
@@ -18,7 +17,7 @@ public class ContentHolderUtil {
 
     private static final PropertyPlaceholderHelper PROPERTY_PLACEHOLDER_HELPER = new PropertyPlaceholderHelper(PLACEHOLDER_PREFIX, PLACEHOLDER_SUFFIX);
 
-    private ContentHolderUtil() {
+    private ContentHolderUtils() {
 
     }
 

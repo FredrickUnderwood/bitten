@@ -50,6 +50,22 @@ mybatis:
     map-underscore-to-camel-case: true
   type-aliases-package: com/chen/bitten/common/domain/persistence
 
+xxl:
+  job:
+    admin:
+      address: http://127.0.0.1:8081/xxl-job-admin
+      username: admin
+      password: 123456
+      accessToken: default_token
+    executor:
+      appname: xxl-job-executor-bitten
+      address:
+      ip:
+      port: 9999
+      logpath: log/xxl-job
+      logretentiondays: 30
+      title: bittenCronJob
+
 
 
 

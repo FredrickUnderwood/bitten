@@ -23,6 +23,7 @@
         <log-record-springboot3-starter.version>1.7.0</log-record-springboot3-starter.version>
         <javax-mail.version>1.6.2</javax-mail.version>
         <flink.version>1.14.6</flink.version>
+        <xxl-job.version>2.3.0</xxl-job.version>
     </properties>
 
     <modules>
@@ -31,6 +32,7 @@
         <module>bitten-server</module>
         <module>bitten-api</module>
         <module>bitten-data</module>
+        <module>bitten-cron</module>
     </modules>
 
     <parent>
