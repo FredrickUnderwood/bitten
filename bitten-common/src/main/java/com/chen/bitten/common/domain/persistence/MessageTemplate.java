@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Accessors(chain = true)
 public class MessageTemplate implements Serializable {
 
     private Long id;
@@ -41,12 +43,12 @@ public class MessageTemplate implements Serializable {
     /**
      * 定时任务id
      */
-    private Integer CronTaskId;
+    private Integer cronTaskId;
 
     /**
      * 定时发送人群的文件路径
      */
-    private String CronCrowdPath;
+    private String cronCrowdPath;
 
     /**
      * 期望发送时间：0:立即发送 定时任务以及周期任务:cron表达式
