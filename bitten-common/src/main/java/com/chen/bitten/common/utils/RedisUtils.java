@@ -96,4 +96,22 @@ public class RedisUtils {
         }
         return false;
     }
+
+    public Long lLen(String key) {
+        try {
+            return redisTemplate.opsForList().size(key);
+        } catch (Exception e) {
+            log.error("{}lLen fail! e: {}", LOG_PREFIX, e.getStackTrace());
+        }
+        return null;
+    }
+
+    public String lPop(String key) {
+        try {
+            return (String) redisTemplate.opsForList().leftPop(key);
+        } catch (Exception e) {
+            log.error("{}lPop fail! e: {}", LOG_PREFIX, e.getStackTrace());
+        }
+        return null;
+    }
 }
