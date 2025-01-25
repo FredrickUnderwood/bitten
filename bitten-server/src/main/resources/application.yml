@@ -42,6 +42,13 @@ bitten:
     enabled: false
   mq:
     type: kafka
+  aliyun:
+    oss:
+      endPoint: oss-cn-chengdu.aliyuncs.com
+      accessKeyId: LTAI5tQyo3sqU9xKNZF7rRjB
+      accessKeySecret: O3WA3FoLeyndyowq4UVT9bXtneJo8j
+      bucketName: mt-takeout-oss
+  dataPath: /usr/bitten/temp
 
 
 mybatis:

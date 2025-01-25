@@ -1,5 +1,6 @@
 package com.chen.bitten.server.controller;
 
+import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.chen.bitten.api.service.SendService;
@@ -10,28 +11,40 @@ import com.chen.bitten.common.dto.MessageTemplateParam;
 import com.chen.bitten.common.dto.SendRequest;
 import com.chen.bitten.common.dto.SendResponse;
 import com.chen.bitten.common.enums.RespStatusEnum;
+import com.chen.bitten.common.utils.AliyunOSSUtils;
 import com.chen.bitten.common.vo.BasicResultVO;
 import com.chen.bitten.common.vo.MessageTemplatePageQueryVO;
 import com.chen.bitten.server.exception.ResponseException;
 import com.chen.bitten.server.service.MessageTemplateService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestController
 @RequestMapping("/messageTemplate")
 public class MessageTemplateController {
+
+    private static final String LOG_PREFIX = "[MessageTemplateController]";
 
     @Autowired
     private MessageTemplateService messageTemplateService;
 
     @Autowired
     private SendService sendService;
+
+    @Value("${bitten.dataPath}")
+    private String dataPath;
 
     @PostMapping("/save")
     public BasicResultVO<MessageTemplate> save(@RequestBody MessageTemplate messageTemplate) {
@@ -77,4 +90,40 @@ public class MessageTemplateController {
         }
         return BasicResultVO.success(sendResponse);
     }
+
+    @PostMapping("/start/{id}")
+    public BasicResultVO startCronTask(@PathVariable("id") Long id) {
+        return messageTemplateService.startCronTask(id);
+    }
+
+    @PostMapping("/stop/{id}")
+    public BasicResultVO stopCronTask(@PathVariable("id") Long id) {
+        return messageTemplateService.stopCronTask(id);
+    }
+
+    /**
+     * 上传定时任务参数文件
+     * @param file
+     * @return
+     */
+    @PostMapping("/upload")
+    public BasicResultVO<String> upload(@RequestParam("file")MultipartFile file) {
+        String filePath = dataPath + IdUtil.fastSimpleUUID() + file.getOriginalFilename();
+        try {
+            File localFile = new File(filePath);
+            if (!localFile.exists()) {
+                boolean res = localFile.mkdir();
+                if (!res) {
+                    log.error("{}Make directory fail!", LOG_PREFIX);
+                    throw new ResponseException(RespStatusEnum.SERVER_ERROR);
+                }
+            }
+            file.transferTo(localFile);
+        } catch (IOException e) {
+            log.error("{}upload fail! e: {}", LOG_PREFIX, e.getStackTrace());
+            throw new ResponseException(RespStatusEnum.SERVER_ERROR);
+        }
+        return BasicResultVO.success(filePath);
+    }
+
 }

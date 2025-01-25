@@ -45,4 +45,11 @@
         WHERE creator = #{creator} AND name LIKE CONCAT('%', #{name}, '%') AND is_deleted = 0
         ORDER BY updated_time DESC
     </select>
+
+    <select id="findByIds" resultType="com.chen.bitten.common.domain.persistence.MessageTemplate">
+        SELECT * FROM message_template WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 </mapper>

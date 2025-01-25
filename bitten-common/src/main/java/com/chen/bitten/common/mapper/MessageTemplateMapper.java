@@ -6,6 +6,8 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface MessageTemplateMapper {
 
@@ -17,4 +19,6 @@ public interface MessageTemplateMapper {
     void update(MessageTemplate messageTemplate);
 
     Page<MessageTemplate> queryPage(MessageTemplateParam messageTemplateParam);
+
+    List<MessageTemplate> findByIds(List<Long> ids);
 }

@@ -25,6 +25,7 @@
         <flink.version>1.14.6</flink.version>
         <xxl-job.version>2.3.0</xxl-job.version>
         <pagehelper-spring-boot-starter.version>2.1.0</pagehelper-spring-boot-starter.version>
+        <aliyun-oss-sdk.version>2.8.3</aliyun-oss-sdk.version>
     </properties>
 
     <modules>
