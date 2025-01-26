@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.bitten.common.mapper.MessageTemplateMapper">
+    <insert id="insert" parameterType="com.chen.bitten.common.domain.persistence.MessageTemplate"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO message_template (name, audit_status, flow_id, message_status, cron_task_id, cron_crowd_path,
+                                      expect_push_time, id_type, send_channel, template_type, message_type, shield_type,
+                                      message_content, send_account, creator, updater, auditor, team, proposer,
+                                      is_deleted, created_time, updated_time)
+        VALUES (#{name}, #{auditStatus}, #{flowId}, #{messageStatus}, #{cronTaskId}, #{cronCrowdPath}, #{expectPushTime},
+                #{idType}, #{sendChannel}, #{templateType}, #{messageType}, #{shieldType}, #{messageContent}, #{sendAccount},
+                #{creator}, #{updater}, #{auditor}, #{team}, #{proposer}, #{isDeleted}, #{createdTime}, #{updatedTime});
+    </insert>
+
+    <update id="update" parameterType="com.chen.bitten.common.domain.persistence.MessageTemplate">
+        UPDATE message_template
+        SET name = #{name},
+            audit_status = #{auditStatus},
+            flow_id = #{flowId},
+            message_status = #{messageStatus},
+            cron_task_id = #{cronTaskId},
+            cron_crowd_path = #{cronCrowdPath},
+            expect_push_time = #{expectPushTime},
+            id_type = #{idType},
+            send_channel = #{sendChannel},
+            template_type = #{templateType},
+            message_type = #{messageType},
+            shield_type = #{shieldType},
+            message_content = #{messageContent},
+            send_account = #{sendAccount},
+            creator = #{creator},
+            updater = #{updater},
+            auditor = #{auditor},
+            team = #{team},
+            proposer = #{proposer},
+            is_deleted = #{isDeleted},
+            created_time = #{createdTime},
+            updated_time = #{updatedTime}
+        WHERE id = #{id};
+    </update>
+
+    <select id="queryPage" parameterType="com.chen.bitten.common.dto.MessageTemplateParam" resultType="com.chen.bitten.common.domain.persistence.MessageTemplate">
+        SELECT * FROM message_template
+        WHERE creator = #{creator} AND name LIKE CONCAT('%', #{name}, '%') AND is_deleted = 0
+        ORDER BY updated_time DESC
+    </select>
+
+    <select id="findByIds" resultType="com.chen.bitten.common.domain.persistence.MessageTemplate">
+        SELECT * FROM message_template WHERE id IN
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

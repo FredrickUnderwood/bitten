@@ -1,6 +1,6 @@
 spring:
   kafka:
-    bootstrap-servers: 47.109.43.173:9092
+    bootstrap-servers: ${bitten.middleware-host}:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -14,11 +14,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/bitten
     username: root
-    password: root
+    password: ${spring.datasource.password}
   data:
     redis:
       database: 10
-      host: 47.109.43.173
+      host: ${bitten.middleware-host}
       port: 6379
 server:
   port: 8090
@@ -42,6 +42,7 @@ bitten:
     enabled: false
   mq:
     type: kafka
+  dataPath: /usr/bitten/temp
 
 
 mybatis:
@@ -49,6 +50,22 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   type-aliases-package: com/chen/bitten/common/domain/persistence
+
+xxl:
+  job:
+    admin:
+      address: http://127.0.0.1:8081/xxl-job-admin
+      username: admin
+      password: 123456
+      accessToken: default_token
+    executor:
+      appname: xxl-job-executor-bitten
+      address:
+      ip:
+      port: 9999
+      logpath: log/xxl-job
+      logretentiondays: 30
+      title: bittenCronJob
 
 
 

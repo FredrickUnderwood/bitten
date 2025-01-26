@@ -15,7 +15,7 @@ import com.chen.bitten.common.enums.RespStatusEnum;
 import com.chen.bitten.common.mapper.MessageTemplateMapper;
 import com.chen.bitten.common.process.BusinessProcess;
 import com.chen.bitten.common.process.ProcessContext;
-import com.chen.bitten.common.utils.ContentHolderUtil;
+import com.chen.bitten.common.utils.ContentHolderUtils;
 import com.chen.bitten.common.utils.TaskInfoUtils;
 import com.chen.bitten.common.vo.BasicResultVO;
 import lombok.extern.slf4j.Slf4j;
@@ -79,7 +79,7 @@ public class SendAssembleBusiness implements BusinessProcess<SendTaskModel> {
                 /*
                 填充占位符
                  */
-                String updatedValue = ContentHolderUtil.replacePlaceholder(originValue, variables);
+                String updatedValue = ContentHolderUtils.replacePlaceholder(originValue, variables);
                 Object updatedObject = JSONUtil.isTypeJSONObject(updatedValue) ? JSONUtil.toBean(updatedValue, field.getType()) : updatedValue;
                 ReflectUtil.setFieldValue(contentModel, field, updatedObject);
             }
