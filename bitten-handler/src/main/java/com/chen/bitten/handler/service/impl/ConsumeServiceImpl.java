@@ -51,7 +51,6 @@ public class ConsumeServiceImpl implements ConsumeService {
         }
     }
 
-    // TODO 撤回逻辑
     @Override
     public void consume2Recall(RecallTaskInfo recallTaskInfo) {
         logUtils.print(ObjectInfo.builder()

@@ -88,7 +88,7 @@ public class MessageTemplateServiceImpl implements MessageTemplateService {
     public MessageTemplatePageQueryVO queryList(MessageTemplateParam messageTemplateParam) {
         String creator = messageTemplateParam.getCreator().isBlank() ? BittenConstant.DEFAULT_CREATOR : messageTemplateParam.getCreator();
         messageTemplateParam.setCreator(creator);
-        PageHelper.startPage(messageTemplateParam.getPage(), messageTemplateParam.getPageSize());
+        PageHelper.startPage(messageTemplateParam.getPage(), messageTemplateParam.getPerPage());
         Page<MessageTemplate> messageTemplates = messageTemplateMapper.queryPage(messageTemplateParam);
         return MessageTemplatePageQueryVO.builder().rows(messageTemplates).total(messageTemplates.getTotal()).build();
     }

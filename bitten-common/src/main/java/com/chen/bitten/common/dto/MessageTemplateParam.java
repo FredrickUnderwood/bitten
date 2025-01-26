@@ -13,7 +13,7 @@ public class MessageTemplateParam {
 
     private Integer page = 1;
 
-    private Integer pageSize = 10;
+    private Integer perPage = 10;
 
     /**
      * 模板ID
@@ -38,7 +38,7 @@ public class MessageTemplateParam {
     /**
      * 测试用信息
      */
-    private String receivers;
+    private String receiver;
 
 
 

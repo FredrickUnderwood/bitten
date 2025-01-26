@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   kafka:
     bootstrap-servers: ${bitten.middleware-host}:9092
     producer:

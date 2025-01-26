@@ -42,7 +42,15 @@
 
     <select id="queryPage" parameterType="com.chen.bitten.common.dto.MessageTemplateParam" resultType="com.chen.bitten.common.domain.persistence.MessageTemplate">
         SELECT * FROM message_template
-        WHERE creator = #{creator} AND name LIKE CONCAT('%', #{name}, '%') AND is_deleted = 0
+        <where>
+            is_deleted = 0
+            <if test="creator != null and creator != ''">
+                AND creator = #{creator}
+            </if>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%', #{name}, '%')
+            </if>
+        </where>
         ORDER BY updated_time DESC
     </select>
 

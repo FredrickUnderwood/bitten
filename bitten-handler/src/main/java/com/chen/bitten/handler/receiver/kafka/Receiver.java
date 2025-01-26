@@ -56,7 +56,6 @@ public class Receiver {
         }
     }
 
-    //TODO 撤回消息consumer
     @KafkaListener(topics = "#{'${bitten.business.recall.topic.name}'}", groupId = "#{'${bitten.business.recall.groupId}'}", containerFactory = "filterContainerFactory")
     public void recall(ConsumerRecord<?, String> consumerRecord) {
         Optional<String> kafkaMessage = Optional.ofNullable(consumerRecord.value());
