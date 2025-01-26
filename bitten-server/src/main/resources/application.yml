@@ -1,6 +1,6 @@
 spring:
   kafka:
-    bootstrap-servers: 47.109.43.173:9092
+    bootstrap-servers: ${bitten.middleware-host}:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -14,11 +14,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/bitten
     username: root
-    password: root
+    password: ${spring.datasource.password}
   data:
     redis:
       database: 10
-      host: 47.109.43.173
+      host: ${bitten.middleware-host}
       port: 6379
 server:
   port: 8090
@@ -42,12 +42,6 @@ bitten:
     enabled: false
   mq:
     type: kafka
-  aliyun:
-    oss:
-      endPoint: oss-cn-chengdu.aliyuncs.com
-      accessKeyId: LTAI5tQyo3sqU9xKNZF7rRjB
-      accessKeySecret: O3WA3FoLeyndyowq4UVT9bXtneJo8j
-      bucketName: mt-takeout-oss
   dataPath: /usr/bitten/temp
 
 
