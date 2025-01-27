@@ -37,6 +37,7 @@ abstract public class BaseHandler implements Handler {
                     .bizId(taskInfo.getBizId()).messageId(taskInfo.getMessageId())
                     .receiver(taskInfo.getReceiver()).state(AnchorStateEnum.SEND_SUCCESS.getCode())
                     .businessId(taskInfo.getBusinessId()).build());
+            return;
         }
         logUtils.print(AnchorInfo.builder()
                 .bizId(taskInfo.getBizId()).messageId(taskInfo.getMessageId())

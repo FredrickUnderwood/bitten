@@ -11,7 +11,6 @@ import com.chen.bitten.common.dto.MessageTemplateParam;
 import com.chen.bitten.common.dto.SendRequest;
 import com.chen.bitten.common.dto.SendResponse;
 import com.chen.bitten.common.enums.RespStatusEnum;
-import com.chen.bitten.common.utils.AliyunOSSUtils;
 import com.chen.bitten.common.vo.BasicResultVO;
 import com.chen.bitten.common.vo.MessageTemplatePageQueryVO;
 import com.chen.bitten.server.exception.ResponseException;
@@ -57,7 +56,7 @@ public class MessageTemplateController {
         return BasicResultVO.success(messageTemplatePageQueryVO);
     }
 
-    @GetMapping("/list/{id}")
+    @GetMapping("/query/{id}")
     public BasicResultVO<MessageTemplate> queryById(@PathVariable("id") Long id) {
         return BasicResultVO.success(messageTemplateService.queryById(id));
     }
@@ -80,7 +79,7 @@ public class MessageTemplateController {
     @PostMapping("/test")
     public BasicResultVO<SendResponse> test(@RequestBody MessageTemplateParam messageTemplateParam) {
         Map<String, String> variables = JSON.parseObject(messageTemplateParam.getMessageContent(), new TypeReference<Map<String, String>>() {});
-        MessageParam messageParam = MessageParam.builder().receivers(messageTemplateParam.getReceivers()).variables(variables).build();
+        MessageParam messageParam = MessageParam.builder().receivers(messageTemplateParam.getReceiver()).variables(variables).build();
         SendRequest sendRequest = SendRequest.builder().messageTemplateId(messageTemplateParam.getId())
                 .messageParam(messageParam)
                 .code("send").build();
@@ -89,6 +88,10 @@ public class MessageTemplateController {
             throw new ResponseException(sendResponse.getMsg());
         }
         return BasicResultVO.success(sendResponse);
+    }
+    @PostMapping("/test/content")
+    public BasicResultVO<String> test(Long id) {
+        return BasicResultVO.success(messageTemplateService.queryById(id).getMessageContent());
     }
 
     @PostMapping("/start/{id}")

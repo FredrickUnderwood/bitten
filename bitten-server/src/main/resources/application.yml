@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   kafka:
     bootstrap-servers: ${bitten.middleware-host}:9092
     producer:
@@ -31,6 +33,7 @@ bitten:
     log:
       topic:
         name: bittenBusinessLog
+      groupId: bittenBusinessLogGroup
     topic:
       name: bittenBusiness
     tagId:
@@ -42,7 +45,7 @@ bitten:
     enabled: false
   mq:
     type: kafka
-  dataPath: /usr/bitten/temp
+  dataPath: E:\bitten\usr\bitten\tmp\
 
 
 mybatis:
@@ -65,7 +68,7 @@ xxl:
       port: 9999
       logpath: log/xxl-job
       logretentiondays: 30
-      title: bittenCronJob
+      title: bittenJob
 
 
 

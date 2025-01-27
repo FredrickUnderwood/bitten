@@ -1,14 +1,16 @@
-package com.chen.bitten.data.sink;
+package com.chen.bitten.data.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSON;
 import com.chen.bitten.common.constant.BittenConstant;
 import com.chen.bitten.common.domain.AnchorInfo;
 import com.chen.bitten.common.domain.TraceAnchorInfo;
+import com.chen.bitten.data.service.ConsumeService;
 import com.chen.bitten.data.utils.RedisUtils;
+import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisFuture;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.flink.streaming.api.functions.sink.SinkFunction;
+import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
@@ -17,23 +19,14 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
-public class BittenSink implements SinkFunction<AnchorInfo> {
+@Service("logConsumeService")
+public class ConsumeServiceImpl implements ConsumeService {
 
-    private static final String LOG_PREFIX = "[BittenSink]";
+
+    private static final String LOG_PREFIX = "[ConsumeServiceImpl]";
 
     @Override
-    public void invoke(AnchorInfo anchorInfo, Context context) throws Exception {
-        realTimeData(anchorInfo);
-    }
-
-    /**
-     * 实时数据存入Redis
-     * 1.用户维度(查看用户当天收到消息的链路详情)，数量级大，只保留当天
-     * 2.消息模板维度(查看消息模板整体下发情况)，数量级小，保留30天
-     *
-     * @param anchorInfo
-     */
-    private void realTimeData (AnchorInfo anchorInfo) {
+    public void consumeLog(AnchorInfo anchorInfo) {
         try {
             RedisUtils.pipeline(redisAsyncCommands -> {
                 List<RedisFuture<?>> futures = new ArrayList<>();
@@ -64,7 +57,8 @@ public class BittenSink implements SinkFunction<AnchorInfo> {
                 return futures;
             });
         } catch (Exception e) {
-            log.error("{}realTimeData fail! e: {}", LOG_PREFIX, e.getStackTrace());
+            log.error("{}consumeLog fail! e: {}", LOG_PREFIX, e.getStackTrace());
         }
+
     }
 }

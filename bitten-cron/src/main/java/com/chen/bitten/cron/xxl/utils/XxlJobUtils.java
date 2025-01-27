@@ -6,13 +6,10 @@ import com.chen.bitten.common.domain.persistence.MessageTemplate;
 import com.chen.bitten.common.enums.RespStatusEnum;
 import com.chen.bitten.common.vo.BasicResultVO;
 import com.chen.bitten.cron.xxl.constant.XxlJobConstant;
+import com.chen.bitten.cron.xxl.enums.*;
 import com.chen.bitten.cron.xxl.service.CronTaskService;
 import com.chen.bitten.cron.xxl.domain.XxlJobGroup;
 import com.chen.bitten.cron.xxl.domain.XxlJobInfo;
-import com.chen.bitten.cron.xxl.enums.ExecutorBlockStrategyEnum;
-import com.chen.bitten.cron.xxl.enums.ExecutorRouteStrategyEnum;
-import com.chen.bitten.cron.xxl.enums.GlueTypeEnum;
-import com.chen.bitten.cron.xxl.enums.MisfireStrategyEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -46,6 +43,7 @@ public class XxlJobUtils {
                 .jobDesc(messageTemplate.getName())
                 .author(messageTemplate.getCreator())
                 .scheduleConf(scheduledConf)
+                .scheduleType(ScheduleTypeEnum.CRON.name())
                 .misfireStrategy(MisfireStrategyEnum.DO_NOTHING.name())
                 .executorRouteStrategy(ExecutorRouteStrategyEnum.CONSISTENT_HASH.name())
                 .executorHandler(XxlJobConstant.JOB_HANDLER_NAME)

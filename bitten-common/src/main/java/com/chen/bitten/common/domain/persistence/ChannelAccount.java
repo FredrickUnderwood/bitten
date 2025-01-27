@@ -16,6 +16,6 @@ public class ChannelAccount {
     private String accountConfig;
     private Integer isDeleted;
     private String creator;
-    private String createdTime;
-    private String updatedTime;
+    private Integer createdTime;
+    private Integer updatedTime;
 }

@@ -53,7 +53,7 @@ public class SendTaskInfoCheckBusiness implements BusinessProcess<SendTaskModel>
                     .filter(receiver -> !ReUtil.isMatch(regexExp, receiver)).collect(Collectors.toSet());
             if (!illegalReceivers.isEmpty()) {
                 taskInfo.getReceiver().removeAll(illegalReceivers);
-                log.info("{}Illegal receivers: {}", LOG_PREFIX, illegalReceivers);
+                log.info("{}Illegal receiver: {}", LOG_PREFIX, illegalReceivers);
             }
             if (taskInfo.getReceiver().isEmpty()) {
                 taskInfoIterator.remove();

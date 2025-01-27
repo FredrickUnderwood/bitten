@@ -9,6 +9,5 @@ public interface ConsumeService {
 
     void consume2Send(List<TaskInfo> taskInfoList);
 
-    // TODO 撤回接口
     void consume2Recall(RecallTaskInfo recallTaskInfo);
 }

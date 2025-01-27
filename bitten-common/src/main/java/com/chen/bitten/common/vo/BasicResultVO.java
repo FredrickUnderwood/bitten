@@ -30,7 +30,6 @@ public class BasicResultVO<T> implements Serializable {
      */
     private T data;
 
-    // TODO 构造方法等未实现
 
     public BasicResultVO(String status, String msg) {
         this.status = status;
