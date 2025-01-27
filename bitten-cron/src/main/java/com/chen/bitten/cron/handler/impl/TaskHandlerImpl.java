@@ -1,11 +1,13 @@
 package com.chen.bitten.cron.handler.impl;
 
+import cn.hutool.core.text.csv.CsvRow;
 import com.chen.bitten.common.csv.CountCsvRowHandler;
 import com.chen.bitten.common.domain.CrowdTaskInfo;
 import com.chen.bitten.common.domain.persistence.MessageTemplate;
 import com.chen.bitten.common.mapper.MessageTemplateMapper;
 import com.chen.bitten.common.utils.CsvUtils;
 import com.chen.bitten.cron.handler.TaskHandler;
+import com.chen.bitten.cron.pending.AbstractLazyPending;
 import com.chen.bitten.cron.pending.CrowdBatchTaskPending;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +57,15 @@ public class TaskHandlerImpl implements TaskHandler {
                     .params(params)
                     .receiver(row.getFieldMap().get(CsvUtils.RECEIVER_HEADER)).build();
             crowdBatchTaskPending.pending(crowdTaskInfo);
+            onComplete(row, countCsvRow, crowdBatchTaskPending, messageTemplateId);
         });
 
+    }
+
+    private void onComplete(CsvRow row, Long countCsvRow, AbstractLazyPending crowdBatchTaskPending, Long messageTemplateId) {
+        if (row.getOriginalLineNumber() == countCsvRow) {
+            crowdBatchTaskPending.setStop(true);
+            log.info("{}read csv file for messageTemplateId: {} finished!", LOG_PREFIX, messageTemplateId);
+        }
     }
 }

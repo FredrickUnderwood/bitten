@@ -3,6 +3,7 @@ package com.chen.bitten.cron.pending;
 import com.chen.bitten.cron.config.ThreadPoolConfig;
 import com.chen.bitten.common.domain.PendingParam;
 import jakarta.annotation.PostConstruct;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Lists;
 
@@ -12,6 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
+@Setter
 abstract public class AbstractLazyPending<T> {
 
     private static final String LOG_PREFIX = "[AbstractLazyPending]";

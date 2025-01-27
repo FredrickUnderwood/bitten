@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 @Accessors(chain = true)
 public class XxlJobGroup {
-    private int id;
+    private Integer id;
     private String appname;
     private String title;
     private int addressType;        // 执行器地址类型：0=自动注册、1=手动录入

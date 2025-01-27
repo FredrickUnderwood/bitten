@@ -5,6 +5,8 @@ import com.chen.bitten.common.constant.CommonConstant;
 import com.chen.bitten.common.domain.persistence.ChannelAccount;
 import com.chen.bitten.common.vo.BasicResultVO;
 import com.chen.bitten.server.service.ChannelAccountService;
+import com.chen.bitten.server.utils.CommonAmisVo;
+import com.chen.bitten.server.utils.Convert4Amis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,9 +29,9 @@ public class ChannelAccountController {
     }
 
     @GetMapping("/queryByChannelType")
-    public BasicResultVO<List<ChannelAccount>> queryByChannelType(Integer channelType, String creator) {
+    public BasicResultVO<List<CommonAmisVo>> queryByChannelType(Integer channelType, String creator) {
         creator = creator.isBlank() ? BittenConstant.DEFAULT_CREATOR : creator;
-        return BasicResultVO.success(channelAccountService.queryByChannelType(channelType, creator));
+        return BasicResultVO.success(Convert4Amis.getChannelAccountVo(channelAccountService.queryByChannelType(channelType, creator), channelType));
     }
 
     @GetMapping("/list")
