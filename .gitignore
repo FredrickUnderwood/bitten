@@ -37,4 +37,6 @@ build/
 ### Mac OS ###
 .DS_Store
 
-bitten-server/src/main/resources/application-dev.yml
+/bitten-server/src/main/resources/application-dev.yml
+/log
+/usr
